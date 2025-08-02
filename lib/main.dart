@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:mindease_app/Home.dart';
 import 'package:mindease_app/Navbar.dart';
 
 void main() {
