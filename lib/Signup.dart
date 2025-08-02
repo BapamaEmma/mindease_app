@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mindease_app/Welcome.dart';
 
 class Signup extends StatefulWidget {
   const Signup({super.key});
@@ -10,6 +11,74 @@ class Signup extends StatefulWidget {
 class _SignupState extends State<Signup> {
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return Stack(
+      children: [
+        Container(color: Colors.white),
+        AppBar(
+          backgroundColor: Colors.white,
+          title: Text(
+            'Signup',
+            style: TextStyle(
+              color: Colors.black,
+              fontSize: 20,
+              fontFamily: 'inter',
+            ),
+          ),
+          centerTitle: true,
+          leading: IconButton(
+            icon: Icon(Icons.arrow_back, color: Colors.black),
+            onPressed: () {
+              Navigator.pop(context);
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const Welcome()),
+              );
+            },
+          ),
+        ),
+        Positioned(
+          top: 100,
+          left: MediaQuery.of(context).size.width * 0.1,
+          right: MediaQuery.of(context).size.width * 0.1,
+          child: _FullName(),
+        ),
+      ],
+    );
+  }
+
+  Widget _FullName() {
+    return Padding(
+      padding: const EdgeInsets.all(20.0),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          TextField(
+            decoration: InputDecoration(
+              labelText: 'Full Name',
+              border: OutlineInputBorder(),
+            ),
+          ),
+          SizedBox(height: 20),
+          TextField(
+            obscureText: true,
+            decoration: InputDecoration(
+              labelText: 'Age',
+              border: OutlineInputBorder(),
+            ),
+          ),
+          SizedBox(height: 20),
+          ElevatedButton(
+            onPressed: () {
+              // Handle signup logic
+            },
+            child: Text('Signup'),
+            style: ElevatedButton.styleFrom(
+              minimumSize: Size(double.infinity, 50),
+              backgroundColor: Color(0xFF008080),
+            ),
+          ),
+        ],
+      ),
+    );
   }
 }
