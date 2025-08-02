@@ -1,5 +1,6 @@
+// ignore_for_file: unused_import
+
 import 'package:flutter/material.dart';
-import 'package:mindease_app/Home.dart';
 import 'package:mindease_app/Navbar.dart';
 
 void main() {
@@ -11,6 +12,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'MindEase',
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
