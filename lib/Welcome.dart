@@ -53,11 +53,21 @@ class _WelcomeState extends State<Welcome> {
 }
 
 Widget _Logo() {
-  return Image.asset('assets/images/logo.png', width: 190, height: 190);
+  return Image.asset(
+    'assets/images/logo0.png',
+    width: 190,
+    height: 190,
+    fit: BoxFit.cover,
+  );
 }
 
 Widget _Illustration() {
-  return Image.asset('assets/images/illustration.png', width: 360, height: 240);
+  return Image.asset(
+    'assets/images/illustration.png',
+    width: 360,
+    height: 360,
+    fit: BoxFit.cover,
+  );
 }
 
 Widget _Title() {
@@ -65,12 +75,21 @@ Widget _Title() {
     children: [
       Text(
         'Breath.Reflect.Heal',
-        style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+        style: TextStyle(
+          fontSize: 24,
+          fontFamily: 'Inter',
+          fontWeight: FontWeight.bold,
+        ),
       ),
       SizedBox(height: 8),
       Text(
+        textAlign: TextAlign.center,
         'Join a space designed to help you slow down, check in with yourself, and feel better every day.',
-        style: TextStyle(fontSize: 16, color: Colors.grey),
+        style: TextStyle(
+          fontSize: 16,
+          color: Colors.black54,
+          fontFamily: 'Inter',
+        ),
       ),
     ],
   );
