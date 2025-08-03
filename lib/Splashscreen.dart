@@ -1,5 +1,3 @@
-// ignore_for_file: file_names, depend_on_referenced_packages, unused_import
-
 import 'package:flutter/material.dart';
 import 'package:mindease_app/Welcome.dart';
 import 'package:async/async.dart';

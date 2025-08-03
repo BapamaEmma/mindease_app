@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:mindease_app/Navbar.dart';
+import 'package:mindease_app/Splashscreen.dart';
 
 void main() {
   runApp(const MyApp());
