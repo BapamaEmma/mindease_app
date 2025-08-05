@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
-import 'package:mindease_app/Menus/Breathing.dart';
+import 'package:mindease_app/Menus/Breathe.dart';
 import 'package:mindease_app/Menus/Home.dart';
 import 'package:mindease_app/Menus/Journal.dart';
 import 'package:mindease_app/Menus/Profile.dart';
@@ -24,7 +24,7 @@ class _NavigationState extends State<Navigation> {
   List<Widget> _pages = [
     // Add your page widgets here
     Home(),
-    Breathing(),
+    Breathe(),
     Journal(),
     Profile(),
   ];
