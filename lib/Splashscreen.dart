@@ -28,7 +28,7 @@ class _SplashscreenState extends State<Splashscreen>
       .chain(CurveTween(curve: Curves.easeOut))
       .animate(_controller)..addStatusListener((status) async {
       if (status == AnimationStatus.completed) {
-        await Future.delayed(const Duration(milliseconds: 50));
+        await Future.delayed(const Duration(milliseconds: 15));
         _controller.reverse();
       } else if (status == AnimationStatus.dismissed) {
         _jumpCount++;
