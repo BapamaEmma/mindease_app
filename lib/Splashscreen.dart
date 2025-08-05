@@ -68,7 +68,7 @@ class _SplashscreenState extends State<Splashscreen>
             );
           },
           child: Image.asset(
-            'assets/images/logo.png',
+            'assets/images/Splashscreen Logo.png',
             width: 300,
             height: 300,
             fit: BoxFit.cover,
