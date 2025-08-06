@@ -1,4 +1,7 @@
+// ignore_for_file: non_constant_identifier_names
+
 import 'package:flutter/material.dart';
+import 'package:mindease_app/Home.dart';
 import 'package:mindease_app/Welcome.dart';
 
 class Signup extends StatefulWidget {
@@ -48,7 +51,9 @@ class _SignupState extends State<Signup> {
           TextField(
             decoration: InputDecoration(
               labelText: 'Full Name',
-              border: OutlineInputBorder(),
+              border: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(16),
+              ),
             ),
           ),
           SizedBox(height: 20),
@@ -56,19 +61,44 @@ class _SignupState extends State<Signup> {
             obscureText: true,
             decoration: InputDecoration(
               labelText: 'Age',
-              border: OutlineInputBorder(),
+              border: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(16),
+              ),
+            ),
+          ),
+          SizedBox(height: 20),
+          TextField(
+            obscureText: true,
+            decoration: InputDecoration(
+              labelText: 'Email',
+              border: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(16),
+              ),
+            ),
+          ),
+          SizedBox(height: 20),
+          TextField(
+            obscureText: true,
+            decoration: InputDecoration(
+              labelText: 'Password',
+              border: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(16),
+              ),
             ),
           ),
           SizedBox(height: 20),
           ElevatedButton(
             onPressed: () {
-              // Handle signup logic
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const Home()),
+              );
             },
-            child: Text('Signup'),
             style: ElevatedButton.styleFrom(
               minimumSize: Size(double.infinity, 50),
               backgroundColor: Color(0xFF008080),
             ),
+            child: Text('Signup'),
           ),
         ],
       ),

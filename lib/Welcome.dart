@@ -104,7 +104,7 @@ Widget _buildButtons(BuildContext context) {
           onPressed: () {
             Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) => Signup()),
+              MaterialPageRoute(builder: (context) => const Signup()),
             );
             style:
             ElevatedButton.styleFrom(
@@ -133,7 +133,7 @@ Widget _buildButtons(BuildContext context) {
           onPressed: () {
             Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) => Signin()),
+              MaterialPageRoute(builder: (context) => const Signin()),
             );
           },
           style: ElevatedButton.styleFrom(
