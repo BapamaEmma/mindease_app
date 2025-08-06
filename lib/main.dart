@@ -1,5 +1,3 @@
-// ignore_for_file: unused_import
-
 import 'package:flutter/material.dart';
 import 'package:mindease_app/Navbar.dart';
 import 'package:mindease_app/Splashscreen.dart';

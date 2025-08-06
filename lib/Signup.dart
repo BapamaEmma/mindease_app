@@ -11,38 +11,31 @@ class Signup extends StatefulWidget {
 class _SignupState extends State<Signup> {
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      children: [
-        Container(color: Colors.white),
-        AppBar(
-          backgroundColor: Colors.white,
-          title: Text(
-            'Signup',
-            style: TextStyle(
-              color: Colors.black,
-              fontSize: 20,
-              fontFamily: 'inter',
-            ),
-          ),
-          centerTitle: true,
-          leading: IconButton(
-            icon: Icon(Icons.arrow_back, color: Colors.black),
-            onPressed: () {
-              Navigator.pop(context);
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => const Welcome()),
-              );
-            },
+    return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.white,
+        title: Text(
+          'Signup',
+          style: TextStyle(
+            color: Colors.black,
+            fontSize: 20,
+            fontFamily: 'inter',
           ),
         ),
-        Positioned(
-          top: 100,
-          left: MediaQuery.of(context).size.width * 0.1,
-          right: MediaQuery.of(context).size.width * 0.1,
-          child: _FullName(),
+        centerTitle: true,
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back, color: Colors.black),
+          onPressed: () {
+            Navigator.pop(context);
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => const Welcome()),
+            );
+          },
         ),
-      ],
+      ),
+
+      body: Column(children: [_FullName()]),
     );
   }
 

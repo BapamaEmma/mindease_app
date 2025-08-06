@@ -1,5 +1,3 @@
-// ignore_for_file: file_names, depend_on_referenced_packages, unused_import
-
 import 'package:flutter/material.dart';
 import 'package:mindease_app/Welcome.dart';
 import 'package:async/async.dart';
@@ -70,7 +68,7 @@ class _SplashscreenState extends State<Splashscreen>
             );
           },
           child: Image.asset(
-            'assets/images/logo.png',
+            'assets/images/Splashscreen Logo.png',
             width: 300,
             height: 300,
             fit: BoxFit.cover,
