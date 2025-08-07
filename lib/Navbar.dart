@@ -21,7 +21,7 @@ class _NavigationState extends State<Navigation> {
     });
   }
 
-  List<Widget> _pages = [
+  final List<Widget> _pages = [
     // Add your page widgets here
     Home(),
     Breathe(),

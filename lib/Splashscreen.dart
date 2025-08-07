@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:mindease_app/Welcome.dart';
-import 'package:async/async.dart';
 
 class Splashscreen extends StatefulWidget {
   const Splashscreen({super.key});
