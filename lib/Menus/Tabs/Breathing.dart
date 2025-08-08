@@ -83,7 +83,9 @@ Widget _Calm() {
             height: 50,
             child: Center(
               child: SlideAction(
-                onSubmit: () {},
+                onSubmit: () {
+                  return null;
+                },
                 outerColor: Colors.white,
                 innerColor: Color(0xFF008080),
                 textColor: Color(0xFF008080),
@@ -149,7 +151,9 @@ Widget _focus() {
             height: 50,
             child: Center(
               child: SlideAction(
-                onSubmit: () {},
+                onSubmit: () {
+                  return null;
+                },
                 outerColor: Colors.white,
                 innerColor: Color(0xFF008080),
                 textColor: Color(0xFF008080),
@@ -207,7 +211,9 @@ Widget _Sleep() {
             height: 50,
             child: Center(
               child: SlideAction(
-                onSubmit: () {},
+                onSubmit: () {
+                  return null;
+                },
                 outerColor: Colors.white,
                 innerColor: Color(0xFF008080),
                 textColor: Color(0xFF008080),

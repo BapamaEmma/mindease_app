@@ -1,8 +1,8 @@
-// ignore_for_file: non_constant_identifier_names, file_names, unused_label
+// ignore_for_file: non_constant_identifier_names, file_names
 
 import 'package:flutter/material.dart';
-import 'package:mindease_app/Signup.dart';
 import 'package:mindease_app/Signin.dart';
+import 'package:mindease_app/Signup.dart';
 
 class Welcome extends StatefulWidget {
   const Welcome({super.key});
@@ -11,7 +11,66 @@ class Welcome extends StatefulWidget {
   State<Welcome> createState() => _WelcomeState();
 }
 
-class _WelcomeState extends State<Welcome> {
+class _WelcomeState extends State<Welcome> with TickerProviderStateMixin {
+  late AnimationController _logoController;
+  late Animation<Offset> _logoAnimation;
+  late Animation<double> _logoFade;
+  late Animation<double> _logoScale;
+
+  late AnimationController _contentController;
+  late Animation<Offset> _contentAnimation;
+
+  @override
+  void initState() {
+    super.initState();
+
+    // Logo animations
+    _logoController = AnimationController(
+      vsync: this,
+      duration: const Duration(milliseconds: 1600),
+    );
+
+    _logoAnimation = Tween<Offset>(
+      begin: const Offset(0, -1),
+      end: Offset.zero,
+    ).animate(CurvedAnimation(parent: _logoController, curve: Curves.easeOut));
+
+    _logoFade = Tween<double>(
+      begin: 0.0,
+      end: 1.0,
+    ).animate(CurvedAnimation(parent: _logoController, curve: Curves.easeIn));
+
+    _logoScale = Tween<double>(begin: 0.8, end: 1.0).animate(
+      CurvedAnimation(parent: _logoController, curve: Curves.easeOutBack),
+    );
+
+    // Content animations
+    _contentController = AnimationController(
+      vsync: this,
+      duration: const Duration(milliseconds: 1500),
+    );
+
+    _contentAnimation = Tween<Offset>(
+      begin: const Offset(0, 1),
+      end: Offset.zero,
+    ).animate(
+      CurvedAnimation(parent: _contentController, curve: Curves.easeOut),
+    );
+
+    _logoController.forward();
+
+    Future.delayed(const Duration(milliseconds: 400), () {
+      _contentController.forward();
+    });
+  }
+
+  @override
+  void dispose() {
+    _logoController.dispose();
+    _contentController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -22,14 +81,29 @@ class _WelcomeState extends State<Welcome> {
           Positioned(
             top: 2,
             left: MediaQuery.of(context).size.width / 2 - 95,
-            child: _Logo(),
+            child: FadeTransition(
+              opacity: _logoFade,
+              child: ScaleTransition(
+                scale: _logoScale,
+                child: SlideTransition(
+                  position: _logoAnimation,
+                  child: _Logo(),
+                ),
+              ),
+            ),
           ),
 
           // Illustration
           Positioned(
             top: 140,
             left: MediaQuery.of(context).size.width / 2 - 180,
-            child: _Illustration(),
+            child: FadeTransition(
+              opacity: _contentController,
+              child: SlideTransition(
+                position: _contentAnimation,
+                child: _Illustration(),
+              ),
+            ),
           ),
 
           // Title
@@ -37,14 +111,27 @@ class _WelcomeState extends State<Welcome> {
             top: 450,
             left: MediaQuery.of(context).size.width * 0.1,
             right: MediaQuery.of(context).size.width * 0.1,
-            child: _Title(),
+            child: FadeTransition(
+              opacity: _contentController,
+              child: SlideTransition(
+                position: _contentAnimation,
+                child: _Title(),
+              ),
+            ),
           ),
 
+          // Buttons
           Positioned(
             top: 650,
-            left: MediaQuery.of(context).size.width * 0.0,
-            right: MediaQuery.of(context).size.width * 0.0,
-            child: _buildButtons(context),
+            left: 0,
+            right: 0,
+            child: FadeTransition(
+              opacity: _contentController,
+              child: SlideTransition(
+                position: _contentAnimation,
+                child: _buildButtons(context),
+              ),
+            ),
           ),
         ],
       ),
@@ -52,15 +139,20 @@ class _WelcomeState extends State<Welcome> {
   }
 }
 
+// --- Logo Widget ---
 Widget _Logo() {
-  return Image.asset(
-    'assets/images/logo0.png',
-    width: 190,
-    height: 190,
-    fit: BoxFit.cover,
+  return Hero(
+    tag: 'app_logo',
+    child: Image.asset(
+      'assets/images/logo0.png',
+      width: 190,
+      height: 190,
+      fit: BoxFit.cover,
+    ),
   );
 }
 
+// --- Illustration Widget ---
 Widget _Illustration() {
   return Image.asset(
     'assets/images/illustration.png',
@@ -70,11 +162,12 @@ Widget _Illustration() {
   );
 }
 
+// --- Title Widget ---
 Widget _Title() {
   return Column(
-    children: [
+    children: const [
       Text(
-        'Breath.Reflect.Heal',
+        'Breathe. Reflect. Heal',
         style: TextStyle(
           fontSize: 24,
           fontFamily: 'Inter',
@@ -95,6 +188,7 @@ Widget _Title() {
   );
 }
 
+// --- Buttons Widget ---
 Widget _buildButtons(BuildContext context) {
   return Padding(
     padding: const EdgeInsets.all(16.0),
@@ -102,15 +196,7 @@ Widget _buildButtons(BuildContext context) {
       children: [
         ElevatedButton(
           onPressed: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => Signup()),
-            );
-            style:
-            ElevatedButton.styleFrom(
-              backgroundColor: Colors.green[600],
-              minimumSize: const Size(double.infinity, 50),
-            );
+            Navigator.push(context, SlideFromBottomPageRoute(page: Signin()));
           },
           style: ElevatedButton.styleFrom(
             backgroundColor: const Color(0xFF008080),
@@ -128,24 +214,21 @@ Widget _buildButtons(BuildContext context) {
             ),
           ),
         ),
-        SizedBox(height: 15),
+        const SizedBox(height: 15),
         ElevatedButton(
           onPressed: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => Signin()),
-            );
+            Navigator.push(context, SlideFromBottomPageRoute(page: Signup()));
           },
           style: ElevatedButton.styleFrom(
             backgroundColor: Colors.white,
             minimumSize: const Size(double.infinity, 50),
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(16),
-              side: BorderSide(color: Colors.black, width: 0.3),
+              side: const BorderSide(color: Colors.black, width: 0.3),
             ),
           ),
           child: const Text(
-            'Sign in',
+            'Sign Up',
             style: TextStyle(
               fontSize: 18,
               fontFamily: 'Inter',
@@ -156,4 +239,35 @@ Widget _buildButtons(BuildContext context) {
       ],
     ),
   );
+}
+
+// --- Custom Page Transition ---
+class SlideFromBottomPageRoute extends PageRouteBuilder {
+  final Widget page;
+
+  SlideFromBottomPageRoute({required this.page})
+    : super(
+        pageBuilder:
+            (
+              BuildContext context,
+              Animation<double> animation,
+              Animation<double> secondaryAnimation,
+            ) => page,
+        transitionDuration: const Duration(milliseconds: 600),
+        transitionsBuilder:
+            (
+              BuildContext context,
+              Animation<double> animation,
+              Animation<double> secondaryAnimation,
+              Widget child,
+            ) => SlideTransition(
+              position: Tween<Offset>(
+                begin: const Offset(0, 1),
+                end: Offset.zero,
+              ).animate(
+                CurvedAnimation(parent: animation, curve: Curves.easeInOut),
+              ),
+              child: child,
+            ),
+      );
 }
