@@ -54,6 +54,7 @@ class _NavigationState extends State<Navigation> {
               activeColor: Colors.white,
               gap: 8,
               padding: EdgeInsets.all(16),
+              backgroundColor: Colors.transparent,
               tabs: [
                 GButton(icon: Icons.home, text: 'Home'),
                 GButton(icon: Icons.self_improvement_rounded, text: 'Breathe'),

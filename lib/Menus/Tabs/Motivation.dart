@@ -10,6 +10,23 @@ class Motivation extends StatefulWidget {
 class _MotivationState extends State<Motivation> {
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return Container(child: Column(children: [_header()]));
   }
+}
+
+Widget _header() {
+  return ListTile(
+    title: Text(
+      'Motivation',
+      style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+    ),
+    subtitle: Text('Get inspired and stay motivated'),
+  );
+}
+
+void _Playlistmodal(BuildContext context) {
+  showModalBottomSheet(
+    context: context,
+    builder: (context) => Column(children: []),
+  );
 }
