@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:mindease_app/Splashscreen.dart';
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
+  Firebase.initializeApp();
   runApp(const MyApp());
 }
 
