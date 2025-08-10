@@ -1,3 +1,5 @@
+// ignore_for_file: non_constant_identifier_names, unused_element
+
 import 'package:flutter/material.dart';
 
 class Motivation extends StatefulWidget {
